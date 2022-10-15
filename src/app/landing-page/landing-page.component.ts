@@ -28,10 +28,10 @@ export class LandingPageComponent implements OnInit {
 
       // this.locationArray.push(`Lat: ${lat}, Lon: ${lon}`)
       this.currentLocation = [lat,lon]
-      this.inLocation = this.inside(this.currentLocation, [[-75.616684,40.032011],
-        [-75.616383,40.032048],
-        [-75.616356,40.031887],
-        [-75.616662,40.031846]])
+      this.inLocation = this.inside(this.currentLocation, [[40.032011,-75.616684],
+        [40.032048,-75.616383],
+        [40.031887,-75.616356],
+        [40.031846,-75.616662]])
     })
   }
 
