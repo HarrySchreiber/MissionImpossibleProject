@@ -1,9 +1,11 @@
 #red-background {
     background-color: rgba($color: #eb6363, $alpha: 1.0);
     position: absolute; top: 0; left: 0; height: 100%; width: 100%;
+    word-wrap:break-word;
 }
 
 #green-background {
     background-color: rgba($color: #63eb80, $alpha: 1.0);
     position: absolute; top: 0; left: 0; height: 100%; width: 100%;
+    word-wrap:break-word;
 }
