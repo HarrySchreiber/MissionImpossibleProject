@@ -1,1 +1,9 @@
 <p *ngFor="let value of locationArray">{{ value }}</p>
+
+<div *ngIf="inLocation" id="green-background">
+    <h1> {{currentLocation}} </h1>
+</div>
+
+<div *ngIf="!inLocation" id="red-background">
+    <h1> {{currentLocation}} </h1>
+</div>
