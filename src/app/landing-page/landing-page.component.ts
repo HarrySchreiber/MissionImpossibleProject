@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import offsetPolygon from 'offset-polygon';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,10 +11,30 @@ export class LandingPageComponent implements OnInit {
   locationArray: string[] = Array<string>()
   inLocation: boolean = false
   currentLocation: [number,number] = [0,0]
+  polygon: [number, number][] = [
+    [
+      
+      40.0318453,-75.6183842
+    ],
+    [
+      40.0316625,-75.6188133
+      
+    ],
+    [
+      40.0312969,-75.6185371
+      
+    ],
+    [
+      40.0314674,-75.6180811
+    ]
+  ]
 
   constructor() { }
 
   ngOnInit(): void {
+
+    this.polygon = this.inflatePolygon(this.polygon, 0.00004)
+
     setInterval(() => {
       this.setData()
     },1000)
@@ -28,12 +49,7 @@ export class LandingPageComponent implements OnInit {
 
       // this.locationArray.push(`Lat: ${lat}, Lon: ${lon}`)
       this.currentLocation = [lat,lon]
-      this.inLocation = this.inside(this.currentLocation, [
-        [40.044264,-75.664144 ], 
-        [40.044248,-75.663770 ], 
-        [40.044104,-75.663788 ], 
-        [40.044125,-75.664157 ]
-      ])
+      this.inLocation = this.inside(this.currentLocation, this.polygon)
     })
   }
 
@@ -54,5 +70,19 @@ export class LandingPageComponent implements OnInit {
     }
     
     return inside;
+  }
+
+  inflatePolygon(originalPolygon: [number, number][], offsetValue: number): [number, number][] {
+    let convertedPolygon = this.convertPolygon(originalPolygon)
+
+    console.log(offsetPolygon(convertedPolygon, offsetValue, 0))
+
+    return []
+  }
+
+  convertPolygon(originalPolygon: [number, number][]): { "x": number, "y": number }[] {
+    return originalPolygon.map((point) => {
+      return {"x": point[0], "y": point[1]}
+    })
   }
 }
