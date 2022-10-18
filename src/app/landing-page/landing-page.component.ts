@@ -21,8 +21,9 @@ export class LandingPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.polygon = this.inflatePolygon(this.polygon, 0.00004)
-
+    this.polygon = this.inflatePolygon(this.polygon, 0.0004)
+    console.log(this.polygon);
+    
     setInterval(() => {
       this.setData()
     },1000)
