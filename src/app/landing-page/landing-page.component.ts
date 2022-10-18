@@ -12,27 +12,15 @@ export class LandingPageComponent implements OnInit {
   inLocation: boolean = false
   currentLocation: [number,number] = [0,0]
   polygon: [number, number][] = [
-    [
-      
-      40.0318453,-75.6183842
-    ],
-    [
-      40.0316625,-75.6188133
-      
-    ],
-    [
-      40.0312969,-75.6185371
-      
-    ],
-    [
-      40.0314674,-75.6180811
-    ]
+    [40.0320486,-75.6167185],
+    [40.0318329,-75.6166542],
+    [40.031874 ,-75.6163538],
+    [40.0320712,-75.6164423]
   ]
 
   constructor() { }
 
   ngOnInit(): void {
-
     this.polygon = this.inflatePolygon(this.polygon, 0.00004)
 
     setInterval(() => {
@@ -75,9 +63,9 @@ export class LandingPageComponent implements OnInit {
   inflatePolygon(originalPolygon: [number, number][], offsetValue: number): [number, number][] {
     let convertedPolygon = this.convertPolygon(originalPolygon)
 
-    console.log(offsetPolygon(convertedPolygon, offsetValue, 0))
-
-    return []
+    return offsetPolygon(convertedPolygon, offsetValue, 0).map((points) => {
+      return [points.x, points.y]
+    })
   }
 
   convertPolygon(originalPolygon: [number, number][]): { "x": number, "y": number }[] {
