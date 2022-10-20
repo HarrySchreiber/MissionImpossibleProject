@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import offsetPolygon from 'offset-polygon';
+import { LocationService } from 'src/app/services/location.service';
+import {v4 as uuidv4} from 'uuid';
+
 
 @Component({
   selector: 'app-landing-page',
@@ -18,11 +21,15 @@ export class LandingPageComponent implements OnInit {
     [40.0320712,-75.6164423]
   ]
 
-  constructor() { }
+  constructor(private locationService: LocationService) { }
 
   ngOnInit(): void {
     this.polygon = this.inflatePolygon(this.polygon, 0.0004)
     console.log(this.polygon);
+
+    
+    
+    
     
     setInterval(() => {
       this.setData()
@@ -39,6 +46,17 @@ export class LandingPageComponent implements OnInit {
       // this.locationArray.push(`Lat: ${lat}, Lon: ${lon}`)
       this.currentLocation = [lat,lon]
       this.inLocation = this.inside(this.currentLocation, this.polygon)
+
+      this.locationService.sendLocation({
+        "locationID": uuidv4(),
+        "dateTime": (new Date()).toISOString(),
+        "inBounds": this.inLocation,
+        "latitude": this.currentLocation[0],
+        "longitude": this.currentLocation[1]
+      }).subscribe({
+        next: (v) => { console.log(v); },
+        error: (e) => { console.error(e); }
+      });
     })
   }
 
