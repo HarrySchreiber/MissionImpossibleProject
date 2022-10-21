@@ -13,6 +13,7 @@ export class LandingPageComponent implements OnInit {
 
   locationArray: string[] = Array<string>()
   inLocation: boolean = false
+  locationTrackingOn: boolean = false
   currentLocation: [number,number] = [0,0]
   polygon: [number, number][] = [
     [40.0320486,-75.6167185],
@@ -25,11 +26,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.polygon = this.inflatePolygon(this.polygon, 0.0004)
-    console.log(this.polygon);
-
-    
-    
-    
+    console.log(this.polygon)
     
     setInterval(() => {
       this.setData()
@@ -47,16 +44,18 @@ export class LandingPageComponent implements OnInit {
       this.currentLocation = [lat,lon]
       this.inLocation = this.inside(this.currentLocation, this.polygon)
 
-      this.locationService.sendLocation({
-        "locationID": uuidv4(),
-        "dateTime": (new Date()).toISOString(),
-        "inBounds": this.inLocation,
-        "latitude": this.currentLocation[0],
-        "longitude": this.currentLocation[1]
-      }).subscribe({
-        next: (v) => { console.log(v); },
-        error: (e) => { console.error(e); }
-      });
+      if(this.locationTrackingOn){
+        this.locationService.sendLocation({
+          "locationID": uuidv4(),
+          "dateTime": (new Date()).toISOString(),
+          "inBounds": this.inLocation,
+          "latitude": this.currentLocation[0],
+          "longitude": this.currentLocation[1]
+        }).subscribe({
+          next: (v) => { console.log(v); },
+          error: (e) => { console.error(e); }
+        });
+      }
     })
   }
 
@@ -91,5 +90,9 @@ export class LandingPageComponent implements OnInit {
     return originalPolygon.map((point) => {
       return {"x": point[0], "y": point[1]}
     })
+  }
+
+  toggleLocationService(): void {
+    this.locationTrackingOn = !this.locationTrackingOn
   }
 }

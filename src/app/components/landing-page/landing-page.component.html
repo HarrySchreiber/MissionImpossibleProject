@@ -1,13 +1,13 @@
-<p *ngFor="let value of locationArray">{{ value }}</p>
-
 <div *ngIf="inLocation" id="green-background">
+    <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button>
     <h1> {{currentLocation}} </h1>
 </div>
 
 <div *ngIf="!inLocation" id="red-background">
+    <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button>
     <h1> {{currentLocation}} </h1>
 </div>
 
 <div id="version">
-    Version: 0.0021
+    Version: 0.0022
 </div>
