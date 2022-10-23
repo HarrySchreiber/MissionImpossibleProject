@@ -31,8 +31,6 @@ export class LandingPageComponent implements OnInit {
     setInterval(() => {
       this.setData()
     },1000)
-
-    
   }
 
   setData(): void {

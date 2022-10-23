@@ -1,25 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LandingPageComponent } from './landing-page.component';
-import { ClockModule } from '../clock/clock.module';
+import { ClockComponent } from './clock.component';
+import { ClockDisplayModule } from 'src/app/pipes/clock-display/clock-display.module';
 import { ClockDisplayPipe } from 'src/app/pipes/clock-display/clock-display.pipe';
-import { ClockComponent } from '../clock/clock.component';
 
 
 
 @NgModule({
   declarations: [
-    LandingPageComponent
+    ClockComponent
   ],
   imports: [
     CommonModule,
-    ClockModule,
+    ClockDisplayModule
   ],
   exports: [
-    LandingPageComponent
+    ClockComponent
   ],
   providers: [
     ClockDisplayPipe
   ]
 })
-export class LandingPageModule { }
+export class ClockModule { }

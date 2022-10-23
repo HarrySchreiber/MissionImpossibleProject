@@ -4,7 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ClockModule } from './components/clock/clock.module';
 import { LandingPageModule } from './components/landing-page/landing-page.module';
+import { ClockDisplayModule } from './pipes/clock-display/clock-display.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { LandingPageModule } from './components/landing-page/landing-page.module
     BrowserModule,
     AppRoutingModule,
     LandingPageModule,
-    HttpClientModule 
+    ClockModule,
+    HttpClientModule ,
+    ClockDisplayModule
   ],
   providers: [],
   bootstrap: [AppComponent]

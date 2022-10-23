@@ -1,3 +1,5 @@
+<app-clock></app-clock>
+
 <div *ngIf="inLocation" id="green-background">
     <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button>
     <h1> {{currentLocation}} </h1>
@@ -9,5 +11,5 @@
 </div>
 
 <div id="version">
-    Version: 0.0022
+    Version: 0.0023
 </div>
