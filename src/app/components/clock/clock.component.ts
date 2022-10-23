@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ClockDisplayPipe } from 'src/app/pipes/clock-display/clock-display.pipe';
 
 @Component({
   selector: 'app-clock',
@@ -8,9 +7,17 @@ import { ClockDisplayPipe } from 'src/app/pipes/clock-display/clock-display.pipe
 })
 export class ClockComponent implements OnInit {
 
-  constructor(private clockDisplay: ClockDisplayPipe) { }
+  timeLeftMilli: number = 3600000
+
+  constructor() { }
 
   ngOnInit(): void {
+    setInterval(() => {
+      if(this.timeLeftMilli > 1000){
+        this.timeLeftMilli = this.timeLeftMilli - 1000
+      }
+      
+    }, 1000)
   }
 
 }
