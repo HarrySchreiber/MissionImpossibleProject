@@ -1,15 +1,17 @@
 <app-clock></app-clock>
 
 <div *ngIf="inLocation" id="green-background">
-    <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button>
-    <h1> {{currentLocation}} </h1>
+    <!-- <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button> -->
+    <h1> Current Location: {{currentLocation}} </h1>
 </div>
 
 <div *ngIf="!inLocation" id="red-background">
-    <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button>
-    <h1> {{currentLocation}} </h1>
-</div>
+    <!-- <button (click)="toggleLocationService()">{{ locationTrackingOn ? "On" : "Off" }}</button> -->
+    <h1> Current Location: {{currentLocation}} </h1>
+    <p>Messsage for Resume Users: This is the beggining stages of a proof of concept for a geolocation game I've been workshopping. The simple concept involves users being given a task to get to a location given by their device to earn points. I wanted to showcase this project because of its use of AWS build and deploy tools, as well as the security features with certificates and domains that allow a site access to user location. As this is a very basic proof of concept I've hard coded the fence for the goal location as the general area of Malvern. If you're within the bounds of Malvern, the background should appear green, if you are elsewhere it should appear red.</p>
+    <p>Disclaimers: I do not believe work computers will allow you to share location at all. There is an AWS api built to log locations to a DynamoDB table, however I have disabled that logging for the time being.</p>
 
+</div>
 <div id="version">
-    Version: 0.0024
+    Version: 0.0025
 </div>
